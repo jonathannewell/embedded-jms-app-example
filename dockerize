@@ -1,0 +1,18 @@
+#!/bin/bash
+
+JAR_FILE=embedded-jms-sample-0.0.1-SNAPSHOT.jar
+IMAGE_NAME=embedded-jms
+
+if [ -z $1 ]; then
+    version=1.0
+else
+    version=$1
+fi
+
+mvn clean package
+
+cp target/$JAR_FILE docker/.
+
+docker build --build-arg JAR_FILE=$JAR_FILE docker/. -t $IMAGE_NAME:latest -t $IMAGE_NAME:$version
+
+rm docker/$JAR_FILE

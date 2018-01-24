@@ -1,0 +1,8 @@
+
+spring:
+  profiles:
+    active: development
+
+# JMS Broker Properties
+jms.broker:
+  name: AMQ-EMBEDDED-SAMPLE
